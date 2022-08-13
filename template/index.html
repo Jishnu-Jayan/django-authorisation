@@ -1,0 +1,53 @@
+{% load static%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% if user.is_authenticated%}{{user.username}}{%else%} Account{% endif %}</title>
+<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+</head>
+<body>
+<div id="abc">
+    <nav>
+        <ul>
+			{% if user.is_authenticated%}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="#"></a> Hello {{user.username}}</li>
+            <li><a href="{% url 'application' %}">Application</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+			{%else%}
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li>
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <div class="dropdown">
+
+			<li><a href="#">District</a></li>
+                <div class="dropdown-content">
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Ernakulam_district">Ernakulam</a></li>
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Thiruvananthapuram_district">Thiruvananthapuram</a></li>
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Alappuzha">Alappuzha</a></li>
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Kozhikode_district">Kozhikode</a></li>
+                <li><a class="dropdown-item" href="https://en.wikipedia.org/wiki/Kannur">Kannur</a></li>
+                </div>
+            </div>
+            </ul>
+            </li>
+
+        </ul>
+		{%endif%}
+    </nav>
+    <div class="forms">
+        {% block home %}{% endblock %}
+    {% block register %}
+    {% endblock %}
+    {% block login %}
+    {% endblock %}
+    </div>
+    <div class="container">
+        {% block application %}{% endblock %}
+    </div>
+
+</div>
+
+</body>
+</html>

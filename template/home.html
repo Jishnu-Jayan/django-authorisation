@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+{% block home %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
+{% if user.is_authenticated %}
+<section id="info">
+  <div class="row">
+    <div class="card">
+        <p><b> Hii,{{  user.username }}</b> <br> Hope you're having a good time..</p>
+    </div>
+      <div class="card">
+         <h2></h2>
+        <a href="{% url 'application' %}"><p>Click here to submit the application <br></p></a>
+    </div>
+
+  </div>
+</section>
+{% else %}
+<section id="info2">
+  <div class="row">
+    <div class="card">
+      <h2>Sign Up</h2>
+      <a href="{% url 'register' %}"><p>Click here to create a new account and continue..</p></a>
+    </div>
+    <div class="card">
+      <h2>Log In</h2>
+<a href="{% url 'login' %}">      <p>Alrready have an account?<br>
+        Click here to Log in and continue..</p></a>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+
